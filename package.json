@@ -1,0 +1,25 @@
+{
+  "name": "03-cine-de-verano-pixar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api-fake":"json-server --watch server/db.json"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jessitc/03-cine-de-verano-pixar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jessitc/03-cine-de-verano-pixar/issues"
+  },
+  "homepage": "https://github.com/Jessitc/03-cine-de-verano-pixar#readme",
+  "description": "",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
