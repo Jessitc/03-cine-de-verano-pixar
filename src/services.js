@@ -79,4 +79,38 @@ const createFilm = async (newFilm) => {
     const createdFilm = await response.json();
     //"Devuelve la película recién creada con toda su información
     return createdFilm;
+
 }
+//Form to create new films configuration
+//conecta el formulario HTML con JavaScript
+const filmForm = document.getElementById("film-form");
+//"Escucha cuando el usuario envía el formulario y ejecuta código"
+filmForm.addEventListener("submit", async (event) => {
+//Evita que la página se recargue cuando se envíe el formulario"
+    event.preventDefault();
+//document.getElementById("title").value = Obtiene el texto que escribió el usuario en el campo título
+//document.getElementById("director").value = Obtiene el texto del campo director
+//document.getElementById("description").value = Obtiene el texto del campo descripción
+//.value = Es la propiedad que contiene lo que escribió el usuario
+
+    const title = document.getElementById("title").value;
+    const director = document.getElementById("director").value;
+    const description = document.getElementById("description").value;
+    //const newFilm = { = Crea un objeto llamado "newFilm"
+    //title: title, = Pone el título que escribió el usuario
+    //director: director, = Pone el director que escribió el usuario
+    //description: description = Pone la descripción que escribió el usuario
+    //En palabras simples: "Organiza los datos del usuario en un objeto que la función createFilm puede usar"
+    const newFilm = { 
+        title: title,
+        director: director,
+        description: description
+    };
+    //createFilm(newFilm) = Llama a la función que creamos antes y le pasa los datos del usuario
+    //await = Espera a que se complete la creación de la película
+    //const createdFilm = Guarda la película creada (con el ID que le asignó el servidor)
+    //que pasa: los datos se envian a mi base de datos, el servidor crea la pelicula, recibo la confirmación de que se creo correctamente
+const createdFilm = await createFilm(newFilm);
+//borra todos los campos del formulario
+filmForm.releasePointerCapture();
+});
