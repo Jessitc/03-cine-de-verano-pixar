@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   Paso 1: Configurar la estructura de archivos
+Primero necesitamos organizar los archivos para los servicios. Te sugiero crear una carpeta para los servicios:
+src/
+  services/
+    movieService.js
+¿Ya tienes una estructura similar o prefieres que te ayude a organizarla de otra manera?
+También, ¿podrías contarme qué estructura tiene tu base de datos JSON? (nombres de las propiedades de las películas) Esto me ayudará a ser más específico en los siguientes pasos.
+Una vez que me confirmes esto, pasaremos al siguiente paso donde crearemos la función básica para hacer la petición GET.RetryClaude does not have the ability to run the code it generates yet.Jpara la parte del código, necesito que vayamos línea a línea paso a paso y que me vayas explicando qué hacer en cada parte del código y por qué. Por ahora solo he creado una constante que se llame "const URL_API_FILMS = "http://localhost:3000/films";". Ahora necesito que me digas cuál sería el siguiente paso lógico y que me lo expliques de una forma muy sencillaEditPerfecto, ya tienes la URL base definida. El siguiente paso lógico es crear la función que va a realizar la petición para obtener todas las películas.
+Paso 2: Crear la función de lectura básica
+El siguiente paso es crear una función que use esa URL para hacer la petición. Te propongo que escribas esta línea:
+javascriptconst getAllFilms = async () => {
+¿Por qué esta línea?
+
+const getAllFilms = Creamos una función con un nombre descriptivo que indica que va a obtener TODAS las películas
+async = La ponemos como asíncrona porque las peticiones HTTP tardan tiempo y no queremos que la aplicación se "congele" esperando la respuesta
+() => = Es la sintaxis de función flecha (arrow function) de JavaScript
+
+Esta función será la que contenga toda la lógica para hacer la petición GET a tu json-server.
+¿Has escrito esta línea? Una vez que la tengas, te explico qué va dentro de la función.RetryClaude does not have the ability to run the code it generates yet.Jno entiendo que es (arrow functionEditTe explico qué es una arrow function de forma muy sencilla:
+¿Qué es una arrow function?
+Una arrow function (función flecha) es una forma más corta de escribir funciones en JavaScript. Se llama así por la "flecha" => que usa.
+Forma tradicional:
+javascriptfunction getAllFilms() {
+  // código aquí
+}
+Forma con arrow function:
+javascriptconst getAllFilms = () => {
+  // código aquí
+}
+¿Por qué usar arrow functions?
+
+Más corta: Menos código para escribir
+Moderna: Es la forma actual que se usa en JavaScript
+Común en servicios: Prácticamente todos los servicios modernos las usan
+
+En tu caso específico:
+javascriptconst getAllFilms = async () => {
+Esto significa: "Crea una función llamada getAllFilms que es asíncrona y no recibe parámetros"
+¿Te queda más claro ahora? Si quieres, puedes usar la forma tradicional, pero te recomiendo la arrow function porque es lo estándar en aplicaciones modernas.
+¿Continuamos con esta sintaxis o prefieres usar la forma tradicional?RetryClaude does not have the ability to run the code it generates yet.Jno me queda claroEditTe lo explico de forma más simple:
+Arrow function = Función con flecha
+Imagina que tienes dos formas de decir lo mismo:
+Forma larga (tradicional):
+javascriptfunction getAllFilms() {
+  // aquí va el código
+}
+Forma corta (arrow function):
+javascriptconst getAllFilms = () => {
+  // aquí va el código
+}
+Es como decir en español:
+
+Forma larga: "Voy a crear una función que se llama getAllFilms"
+Forma corta: "getAllFilms es una función"
+
+La flecha => significa:
+"Esta cosa ES una función"
+¿Cuál prefieres usar?
+Opción 1 (tradicional):
+javascriptfunction getAllFilms() {
+Opción 2 (arrow function):
+javascriptconst getAllFilms = () => {
+Ambas hacen exactamente lo mismo. Solo dime cuál te resulta más cómoda y seguimos con esa. ¿Cuál eliges?RetryClaude does not have the ability to run the code it generates yet.Jpero que hace exactamente arrow functionEditTe explico qué hace exactamente una arrow function:
+¿Qué hace una arrow function?
+Una arrow function NO hace nada especial. Es simplemente otra forma de escribir una función normal.
+Ejemplo práctico:
+Función tradicional:
+javascriptfunction saludar() {
+  console.log("Hola");
+}
+Arrow function:
+javascriptconst saludar = () => {
+  console.log("Hola");
+}
+¿El resultado?
+Exactamente el mismo. Ambas:
+
+Se llaman igual: saludar()
+Hacen lo mismo: muestran "Hola"
+Funcionan igual
+
+En tu caso:
+javascriptconst getAllFilms = () => {
+  // código para obtener películas
+}
+Lo que hace: Crea una función que se llama getAllFilms que vas a poder usar así: getAllFilms()
+Es como tener dos formas de escribir tu nombre:
+
+"Mi nombre es Juan" (tradicional)
+"Soy Juan" (arrow function)
+
+Ambas dicen lo mismo, solo cambia la forma de escribirlo.
+¿Te queda más claro ahora qué hace?RetryClaude does not have the ability to run the code it generates yet.Jseguimos con el codigoEditPerfecto, seguimos con el código.
+Ya tienes:
+javascriptconst URL_API_FILMS = "http://localhost:3000/films";
+const getAllFilms = async () => {
+Paso 3: Hacer la petición HTTP
+El siguiente paso es escribir la línea que hace la petición al servidor. Añade esta línea dentro de la función:
+javascriptconst response = await fetch(URL_API_FILMS);
+¿Qué hace esta línea?
+
+fetch() = Es la función de JavaScript que hace peticiones HTTP (como abrir una página web)
+URL_API_FILMS = Usa la URL que definiste antes (http://localhost:3000/films)
+await = Espera a que el servidor responda antes de continuar
+const response = Guarda la respuesta del servidor en una variable llamada "response"
+
+En palabras simples: "Ve a buscar los datos a esa URL y cuando llegue la respuesta, guárdala en response"
+¿Has añadido esta línea? Cuando la tengas, te explico el siguiente paso.RetryClaude does not have the ability to run the code it generates yet.JsiEditExcelente. Ahora tienes:
+javascriptconst URL_API_FILMS = "http://localhost:3000/films";
+const getAllFilms = async () => {
+  const response = await fetch(URL_API_FILMS);
+Paso 4: Convertir la respuesta a JSON
+El siguiente paso es añadir esta línea:
+javascriptconst data = await response.json();
+¿Qué hace esta línea?
+
+response.json() = Convierte la respuesta del servidor a formato JSON (que es como JavaScript puede entender los datos)
+await = Espera a que termine la conversión
+const data = Guarda los datos ya convertidos en una variable llamada "data"
+
+¿Por qué necesitamos esto?
+Cuando el servidor te envía los datos, vienen en formato "crudo" (como un mensaje cifrado). La función .json() los "traduce" a un formato que JavaScript puede usar.
+En palabras simples: "Toma la respuesta del servidor y conviértela en datos que pueda usar"
+¿Has añadido esta línea? Cuando la tengas, te explico el siguiente paso.RetryClaude does not have the ability to run the code it generates yet.JsiEditPerfecto. Ahora tienes:
+javascriptconst URL_API_FILMS = "http://localhost:3000/films";
+const getAllFilms = async () => {
+  const response = await fetch(URL_API_FILMS);
+  const data = await response.json();
+Paso 5: Devolver los datos
+El siguiente paso es añadir esta línea:
+javascriptreturn data;
+¿Qué hace esta línea?
+
+return = Devuelve/entrega los datos a quien llamó a la función
+data = Los datos que obtuvimos del servidor en el paso anterior
+
+¿Por qué necesitamos return?
+Imagina que tu función es como un mensajero:
+
+Va a buscar las películas (fetch)
+Las traduce para que las entiendas (json)
+Te las entrega (return)
+
+Sin return, sería como si el mensajero fuera a buscar tus películas pero nunca te las diera.
+En palabras simples: "Entrega los datos de las películas a quien use esta función"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo cerrar la función.RetryClaude does not have the ability to run the code it generates yet.Jya la tengoEditExcelente. Ahora tienes:
+javascriptconst URL_API_FILMS = "http://localhost:3000/films";
+const getAllFilms = async () => {
+  const response = await fetch(URL_API_FILMS);
+  const data = await response.json();
+  return data;
+Paso 6: Cerrar la función
+El siguiente paso es añadir esta línea:
+javascript}
+¿Qué hace esta línea?
+
+} = Cierra la función que abrimos con {
+Es como cerrar un paréntesis o comillas, pero para funciones
+
+¿Por qué la necesitamos?
+JavaScript necesita saber dónde termina tu función. Es como poner un punto al final de una frase.
+En palabras simples: "Aquí termina la función getAllFilms"
+¿Has añadido esta línea? Cuando la tengas, ya tienes tu primera función completa y te explico el siguiente paso.RetryClaude does not have the ability to run the code it generates yet.Jsi la he añadidoEdit¡Perfecto! Ya tienes tu primera función completa:
+javascriptconst URL_API_FILMS = "http://localhost:3000/films";
+const getAllFilms = async () => {
+  const response = await fetch(URL_API_FILMS);
+  const data = await response.json();
+  return data;
+}
+Paso 7: Exportar la función
+El siguiente paso es añadir esta línea al final:
+javascriptexport { getAllFilms };
+¿Qué hace esta línea?
+
+export = Hace que la función esté disponible para usarla en otros archivos
+{ getAllFilms } = Específicamente exporta la función getAllFilms
+
+¿Por qué la necesitamos?
+Sin esta línea, tu función sería como un libro guardado en un cajón cerrado. Nadie más podría usarla. Con export, es como poner el libro en una biblioteca para que otros puedan acceder a él.
+En palabras simples: "Permite que otros archivos puedan usar esta función"
+¿Has añadido esta línea? Cuando la tengas, ya tienes tu servicio de lectura completo y te explico cómo usarlo.RetryClaude does not have the ability to run the code it generates yet.Jno quiero que me la exportes en este proyectoEditPerfecto, no hay problema. Entonces ya tienes tu función de lectura completa:
+javascriptconst URL_API_FILMS = "http://localhost:3000/films";
+const getAllFilms = async () => {
+  const response = await fetch(URL_API_FILMS);
+  const data = await response.json();
+  return data;
+}
+Paso 8: Cómo usar la función
+Ahora que ya tienes la función creada, el siguiente paso es saber cómo usarla. Puedes usarla de esta forma:
+javascriptgetAllFilms();
+¿Qué hace esta línea?
+
+Llama/ejecuta la función que creaste
+Va a tu json-server, obtiene las películas y te las devuelve
+
+¿Dónde la usarías?
+Por ejemplo, si quieres mostrar las películas cuando se cargue la página, o cuando alguien haga clic en un botón.
+¿Quieres que te explique cómo usar esta función en un ejemplo práctico, o prefieres que pasemos a crear otra función del CRUD (como crear, actualizar o eliminar películas)?RetryClaude does not have the ability to run the code it generates yet.Jvale necesito que la siguientefuncion sea imprimir la informacion en pantallaEditPerfecto. Ahora vamos a crear una función que muestre la información en pantalla.
+Paso 9: Crear la función para mostrar en pantalla
+El siguiente paso es crear una nueva función. Añade esta línea después de tu función anterior:
+javascriptconst showFilmsOnScreen = async () => {
+¿Qué hace esta línea?
+
+const showFilmsOnScreen = Crea una función con un nombre descriptivo que indica que va a mostrar las películas en pantalla
+async = La ponemos como asíncrona porque va a usar la función getAllFilms() que también es asíncrona
+() => = La sintaxis de función (igual que la anterior)
+
+¿Por qué necesitamos una función separada?
+Es como tener dos trabajadores:
+
+Uno que va a buscar las películas (getAllFilms)
+Otro que las muestra en pantalla (showFilmsOnScreen)
+
+En palabras simples: "Crea una función que se encargue de mostrar las películas en la pantalla"
+¿Has añadido esta línea? Cuando la tengas, te explico el siguiente paso.RetryClaude does not have the ability to run the code it generates yet.Jhemos cambiado data por filmDataEditPerfecto, entendido. Entonces tu función getAllFilms ahora quedó así:
+javascriptconst URL_API_FILMS = "http://localhost:3000/films";
+const getAllFilms = async () => {
+  const response = await fetch(URL_API_FILMS);
+  const filmData = await response.json();
+  return filmData;
+}
+Y ahora tienes la nueva función:
+javascriptconst showFilmsOnScreen = async () => {
+Paso 10: Obtener los datos de las películas
+El siguiente paso es añadir esta línea dentro de la función:
+javascriptconst filmData = await getAllFilms();
+¿Qué hace esta línea?
+
+getAllFilms() = Llama a la función que creamos antes para obtener las películas
+await = Espera a que termine de traer los datos
+const filmData = Guarda las películas en una variable llamada "filmData"
+
+En palabras simples: "Ve a buscar todas las películas usando la función anterior y guárdalas en filmData"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo mostrar los datos en pantalla.RetryClaude does not have the ability to run the code it generates yet.Jhe llamado a estafuncion const listFilms = await getAllFilms();EditPerfecto, entendido. Entonces tu función ahora tiene esta línea:
+javascriptconst showFilmsOnScreen = async () => {
+  const listFilms = await getAllFilms();
+Paso 11: Mostrar los datos en la consola (para probar)
+El siguiente paso es añadir esta línea:
+javascriptconsole.log(listFilms);
+¿Qué hace esta línea?
+
+console.log() = Muestra información en la consola del navegador (como una ventana de prueba)
+listFilms = Muestra específicamente la lista de películas que obtuvimos
+
+¿Por qué empezamos con console.log?
+Es como hacer una prueba rápida. Antes de mostrar las películas bonitas en la pantalla, primero verificamos que los datos lleguen correctamente.
+¿Dónde verás el resultado?
+En la consola del navegador (F12 → pestaña Console).
+En palabras simples: "Muestra las películas en la consola para verificar que todo funciona"
+¿Has añadido esta línea? Cuando la tengas, cerramos la función y la probamos.RetryClaude does not have the ability to run the code it generates yet.Jya esta hecho y funciona bien ahora queda recorrer cada pelicula de la lista?Edit¡Exacto! Ahora que ya tienes la lista de películas, el siguiente paso es recorrer cada película para mostrarlas una por una.
+Paso 12: Recorrer cada película
+El siguiente paso es añadir esta línea (puedes quitar o dejar el console.log):
+javascriptlistFilms.forEach(film => {
+¿Qué hace esta línea?
+
+listFilms.forEach() = Recorre cada elemento de la lista de películas
+film => = Por cada película de la lista, la llamamos "film"
+{ = Abre el bloque donde pondremos qué hacer con cada película
+
+¿Cómo funciona?
+Es como decir: "Para cada película en la lista, haz esto..."
+Si tienes 10 películas, esta línea se ejecutará 10 veces, una vez por cada película.
+En palabras simples: "Por cada película en la lista, ejecuta el código que ponga a continuación"
+¿Has añadido esta línea? Cuando la tengas, te explico qué hacer con cada película individual.RetryClaude does not have the ability to run the code it generates yet.JsiEditPerfecto. Ahora tienes:
+javascriptconst showFilmsOnScreen = async () => {
+  const listFilms = await getAllFilms();
+  console.log(listFilms);
+  listFilms.forEach(film => {
+Paso 13: Mostrar información de cada película
+El siguiente paso es añadir esta línea dentro del forEach:
+javascriptconsole.log(film);
+¿Qué hace esta línea?
+
+console.log(film) = Muestra en la consola la información de cada película individual
+film = Es cada película por separado (no toda la lista)
+
+¿Qué verás en la consola?
+Primero verás toda la lista (del console.log anterior), y después verás cada película por separado.
+¿Por qué hacemos esto?
+Para ver qué propiedades tiene cada película (título, año, director, etc.) antes de mostrarlas bonitas en pantalla.
+En palabras simples: "Muestra cada película individual para ver qué información contiene"
+¿Has añadido esta línea? Cuando la tengas, cerramos el forEach y vemos qué propiedades tienen tus películas.RetryClaude does not have the ability to run the code it generates yet.Jsi ya estaEditPerfecto. Ahora tienes:
+javascriptconst showFilmsOnScreen = async () => {
+  const listFilms = await getAllFilms();
+  console.log(listFilms);
+  listFilms.forEach(film => {
+    console.log(film);
+Paso 14: Cerrar el forEach
+El siguiente paso es añadir esta línea:
+javascript});
+¿Qué hace esta línea?
+
+} = Cierra el bloque del forEach que abrimos con {
+) = Cierra el paréntesis del forEach
+; = Termina la instrucción
+
+¿Por qué esta sintaxis rara?
+Porque forEach es una función que recibe otra función como parámetro. Es como cerrar varias cajas anidadas.
+En palabras simples: "Aquí termina lo que hay que hacer con cada película"
+¿Has añadido esta línea? Cuando la tengas, cerramos toda la función y la probamos para ver qué propiedades tienen tus películas.RetryClaude does not have the ability to run the code it generates yet.Jsi ya la tengoEditPerfecto. Ahora tienes:
+javascriptconst showFilmsOnScreen = async () => {
+  const listFilms = await getAllFilms();
+  console.log(listFilms);
+  listFilms.forEach(film => {
+    console.log(film);
+  });
+Paso 15: Cerrar la función completa
+El siguiente paso es añadir esta línea:
+javascript}
+¿Qué hace esta línea?
+
+} = Cierra la función showFilmsOnScreen que abrimos al principio
+
+En palabras simples: "Aquí termina la función showFilmsOnScreen"
+¿Has añadido esta línea? Cuando la tengas, ya tienes tu función completa y te explico cómo probarla para ver qué propiedades tienen tus películas Disney.RetryClaude does not have the ability to run the code it generates yet.Jconst printFilms = async () => {     //llamamos a la funcion getAllFilms para que nos traiga la información     const listFilms = await getAllFilms();     //console.log("lista de peliculas",listFilms);     //recorres cada pelicula de la lista y ejecuta el codigo que ponga a continuación     listFilms.forEach(film => {         //console.log("titulo de la pelicula", film.tittle)      }); } printFilms(); ya la he cerrado y renombrado algunas cosasEdit¡Perfecto! Veo que has hecho algunos cambios muy buenos:
+
+Renombraste la función a printFilms (más claro)
+Añadiste comentarios explicativos (excelente práctica)
+Ya estás llamando a la función con printFilms()
+Veo que comentaste la línea que mostraba el título: film.tittle
+
+Paso 16: Probar y verificar las propiedades
+Ahora que ya tienes la función completa, el siguiente paso es ejecutarla para ver qué propiedades exactas tienen tus películas.
+¿Qué hacer ahora?
+
+Ejecuta tu código (guarda el archivo y recarga la página)
+Abre la consola del navegador (F12 → Console)
+Mira qué información aparece
+
+¿Qué deberías ver?
+La información de cada película con sus propiedades exactas (título, año, director, etc.)
+¿Ya has ejecutado el código? ¿Qué propiedades ves que tienen tus películas Disney en la consola? Esto me ayudará a saber qué información podemos mostrar en pantalla.RetryJcon el codigo que he pegado antes no veo nada en consola por que el foreach esta vacioEdit¡Exacto! Tienes razón. El forEach está vacío porque comentaste la línea que mostraba la información.
+Paso 17: Descomentar para ver los datos
+El siguiente paso es descomentar esta línea para ver la información:
+javascriptconsole.log("titulo de la pelicula", film.tittle)
+Quita las // del principio para que quede así:
+javascriptlistFilms.forEach(film => {
+    console.log("titulo de la pelicula", film.tittle)
+});
+¿Qué hace esto?
+
+Mostrará en consola cada título de película
+Te permitirá ver si la propiedad se llama realmente "tittle" o tiene otro nombre
+
+¿Por qué es importante?
+Necesitamos ver qué propiedades exactas tienen tus películas Disney para poder mostrarlas correctamente.
+¿Has descomentado la línea? Cuando la tengas, ejecuta el código y dime qué ves en la consola.RetryClaude does not have the ability to run the code it generates yet.Jsi, si descomentamos el console log vemos la lista de cada titulo de las peliculasEdit¡Excelente! Eso significa que:
+
+Tu función funciona correctamente ✅
+Las películas se están obteniendo bien ✅
+La propiedad del título se llama "tittle" ✅
+
+Paso 18: Ver todas las propiedades de cada película
+Ahora que sabemos que funciona, el siguiente paso es ver QUÉ OTRAS propiedades tiene cada película además del título.
+Cambia esta línea:
+javascriptconsole.log("titulo de la pelicula", film.tittle)
+Por esta:
+javascriptconsole.log(film)
+¿Por qué este cambio?
+
+Así verás toda la información completa de cada película
+Podrás ver qué otros datos tienes (año, director, género, etc.)
+Te ayudará a decidir qué mostrar en pantalla
+
+En palabras simples: "Muestra toda la información de cada película, no solo el título"
+¿Has hecho el cambio? Cuando lo tengas, ejecuta el código y dime qué propiedades ves que tiene cada película.RetryClaude does not have the ability to run the code it generates yet.Jayer hice este codigo con tus instrucciones paso a paso cual seria el siguiente paso logico para continuar con el codigoEdit¡Perfecto! Veo que ya tienes funcionando la parte de obtener y mostrar los datos en consola.
+El siguiente paso lógico sería mostrar las películas en la página web en lugar de solo en la consola.
+Paso 19: Mostrar las películas en el HTML
+Para esto necesitamos:
+
+Crear un elemento HTML donde mostrar las películas
+Modificar la función para que muestre los datos en la página en lugar de la consola
+
+Primera pregunta: ¿Ya tienes un archivo HTML con algún elemento donde quieres mostrar las películas? (como un <div>, <ul>, etc.)
+Si no lo tienes, el primer paso sería crear un elemento HTML básico como:
+html<div id="films-container"></div>
+¿Qué tienes en tu archivo HTML actualmente? Esto me ayudará a saber exactamente cómo continuar.RetryClaude does not have the ability to run the code it generates yet.Jayer hice este codigo con tus instrucciones paso a paso cual seria el siguiente paso logico para continuar con el codigo 
+const URL_API_FILMS = "http://localhost:3000/films"// ========================================
+//  READ
+// ========================================
+const getAllFilms = async () => {    const response = await fetch(URL_API_FILMS);    const filmData = await response.json();    return filmData;}
+getAllFilms();// ========================================
+//  PRINT
+// ========================================let filmContainer = document.getElementById("film-section");const printFilms = async () => {    const listFilms = await getAllFilms();    listFilms.forEach(film => {        filmContainer.innerHTML += <div data-film-id="${film.id}">
+        <h1>Titulo de la pelicula: ${film.title}</h1>
+        <h2>Director de la pelicula: ${film.director}</h2>
+        <p><b>Descripción de la pelicla</b>: ${film.description}</p>
+        <p><b>numero de la pelicula</b>: ${film.id}</p>
+        </div>    });
+}
+printFilms();Edit¡Excelente! Veo que ya tienes un código muy avanzado. Tienes funcionando:
+✅ La función READ (getAllFilms)
+✅ La función PRINT (printFilms) que muestra las películas en HTML
+El siguiente paso lógico sería continuar con el CRUD completo. Ya tienes la R (Read), ahora te propongo seguir con:
+Paso 20: Crear la función CREATE
+El siguiente paso sería crear una función para añadir nuevas películas a tu base de datos.
+¿Qué necesitarías?
+
+Una función que envíe datos nuevos al servidor (POST)
+Un formulario HTML para introducir los datos de la nueva película
+Una función que tome los datos del formulario y los envíe
+
+¿Por dónde empezamos?
+javascript// ========================================
+//  CREATE
+// ========================================
+const createFilm = async (filmData) => {
+¿Te parece bien seguir con CREATE, o prefieres hacer otra parte del CRUD primero?
+Las opciones son:
+
+Create (añadir películas)
+Update (editar películas)
+Delete (eliminar películas)
+
+¿Con cuál quieres continuar?RetryClaude does not have the ability to run the code it generates yet.Jsi me parece bien seguir con createEditPerfecto, vamos con CREATE paso a paso.
+Paso 20: Crear la función CREATE
+El siguiente paso es añadir esta línea después de tu sección de PRINT:
+javascript// ========================================
+//  CREATE
+// ========================================
+const createFilm = async (filmData) => {
+¿Qué hace esta línea?
+
+const createFilm = Crea una función para añadir películas nuevas
+async = La ponemos asíncrona porque va a hacer una petición HTTP
+(filmData) = Recibe como parámetro los datos de la película nueva que queremos crear
+
+¿Qué es filmData?
+Es un objeto que contendrá la información de la película nueva, como:
+javascript{
+  title: "Frozen",
+  director: "Chris Buck", 
+  description: "Una historia de dos hermanas..."
+}
+En palabras simples: "Crea una función que reciba los datos de una película nueva"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo hacer la petición POST.RetryClaude does not have the ability to run the code it generates yet.Jconst createFilm = async (newFilm) => {  }   vale lo tengo asi he llamado mi codigoEditPerfecto, tienes:
+javascriptconst createFilm = async (newFilm) => {
+}
+Paso 21: Hacer la petición POST
+El siguiente paso es añadir esta línea dentro de la función:
+javascriptconst response = await fetch(URL_API_FILMS, {
+¿Qué hace esta línea?
+
+fetch(URL_API_FILMS, { = Hace una petición a la misma URL, pero ahora con opciones adicionales
+Las { abren un objeto de configuración para la petición
+
+¿Por qué es diferente a la función READ?
+
+En READ solo pedíamos datos (GET)
+En CREATE vamos a enviar datos nuevos (POST)
+Necesitamos configurar cómo enviar esos datos
+
+En palabras simples: "Haz una petición a la URL, pero con configuración especial para enviar datos"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo configurar la petición POST.RetryClaude does not have the ability to run the code it generates yet.Jsi ya la he añadidoEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+Paso 22: Configurar el método POST
+El siguiente paso es añadir esta línea:
+javascriptmethod: "POST",
+¿Qué hace esta línea?
+
+method: "POST" = Le dice al servidor que queremos ENVIAR datos nuevos (no solo pedirlos)
+POST = Es el tipo de petición HTTP para crear/añadir cosas nuevas
+
+¿Por qué POST y no GET?
+
+GET = "Dame datos" (como leer)
+POST = "Toma estos datos nuevos" (como crear)
+
+En palabras simples: "Configura la petición para enviar datos nuevos al servidor"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo configurar el formato de los datos.RetryClaude does not have the ability to run the code it generates yet.Jsi ya esta añadidaEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+Paso 23: Configurar el tipo de contenido
+El siguiente paso es añadir esta línea:
+javascriptheaders: {
+¿Qué hace esta línea?
+
+headers: { = Abre una sección para configurar cómo enviar los datos
+Los headers son como "etiquetas" que le dicen al servidor qué tipo de datos le estamos enviando
+
+¿Por qué necesitamos headers?
+Es como poner una etiqueta en un paquete que dice "FRÁGIL" o "URGENTE". Le decimos al servidor: "Oye, estos datos vienen en formato JSON"
+En palabras simples: "Abre la configuración para decirle al servidor qué tipo de datos enviamos"
+¿Has añadido esta línea? Cuando la tengas, te explico qué header específico necesitamos.RetryClaude does not have the ability to run the code it generates yet.Jya la tengoEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+    headers: {
+Paso 24: Especificar el tipo de contenido JSON
+El siguiente paso es añadir esta línea:
+javascript"Content-Type": "application/json"
+¿Qué hace esta línea?
+
+"Content-Type" = Le dice al servidor qué formato tienen los datos
+"application/json" = Especifica que los datos están en formato JSON
+
+¿Por qué JSON?
+
+JSON es el formato estándar para enviar datos entre aplicaciones web
+Tu json-server espera recibir los datos en este formato
+Es como decir "los datos vienen en formato JSON, no en texto normal"
+
+En palabras simples: "Avisa al servidor que los datos vienen en formato JSON"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo cerrar los headers.RetryClaude does not have the ability to run the code it generates yet.Jsi ya la he añadidoEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+Paso 25: Cerrar los headers
+El siguiente paso es añadir esta línea:
+javascript},
+¿Qué hace esta línea?
+
+} = Cierra la sección de headers que abrimos con {
+, = Indica que hay más configuración después
+
+¿Por qué la coma?
+Porque después de configurar los headers, necesitamos configurar qué datos enviar. La coma separa las dos configuraciones.
+En palabras simples: "Cierra la configuración de headers y prepara la siguiente configuración"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo enviar los datos de la película.RetryClaude does not have the ability to run the code it generates yet.Jsi ya estaEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+Paso 26: Enviar los datos de la película
+El siguiente paso es añadir esta línea:
+javascriptbody: JSON.stringify(newFilm)
+¿Qué hace esta línea?
+
+body: = Aquí van los datos que queremos enviar al servidor
+JSON.stringify(newFilm) = Convierte el objeto newFilm a formato JSON (texto)
+newFilm = Los datos de la película que recibimos como parámetro
+
+¿Por qué JSON.stringify?
+
+newFilm es un objeto JavaScript
+El servidor necesita recibir los datos como texto JSON
+JSON.stringify() hace esa conversión
+
+En palabras simples: "Envía los datos de la película nueva convertidos a formato JSON"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo cerrar la configuración.RetryClaude does not have the ability to run the code it generates yet.JSI YA ESTAEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newFilm)
+Paso 27: Cerrar la configuración de fetch
+El siguiente paso es añadir esta línea:
+javascript});
+¿Qué hace esta línea?
+
+} = Cierra la configuración que abrimos con {
+) = Cierra el paréntesis del fetch
+; = Termina la instrucción
+
+¿Por qué esta sintaxis?
+Es como cerrar varias cajas: primero la configuración, luego el fetch completo.
+En palabras simples: "Cierra toda la configuración del fetch"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo manejar la respuesta del servidor.RetryClaude does not have the ability to run the code it generates yet.Jya estaEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newFilm)
+  });
+Paso 28: Convertir la respuesta del servidor
+El siguiente paso es añadir esta línea:
+javascriptconst createdFilm = await response.json();
+¿Qué hace esta línea?
+
+response.json() = Convierte la respuesta del servidor a formato JavaScript
+await = Espera a que termine la conversión
+const createdFilm = Guarda la película creada (con el ID que le asignó el servidor)
+
+¿Por qué necesitamos esto?
+Cuando creas una película, el servidor te devuelve la película completa con el ID que le asignó. Es útil para confirmar que se creó correctamente.
+En palabras simples: "Recibe la confirmación del servidor de que la película se creó correctamente"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo devolver el resultado.RetryClaude does not have the ability to run the code it generates yet.Jyya estaEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newFilm)
+  });
+  const createdFilm = await response.json();
+Paso 29: Devolver la película creada
+El siguiente paso es añadir esta línea:
+javascriptreturn createdFilm;
+¿Qué hace esta línea?
+
+return = Devuelve el resultado a quien llamó a la función
+createdFilm = La película que acabamos de crear (con su ID nuevo)
+
+¿Por qué devolver la película?
+
+Para confirmar que se creó correctamente
+Para obtener el ID que le asignó el servidor
+Para poder usarla en otras partes del código
+
+En palabras simples: "Devuelve la película recién creada con toda su información"
+¿Has añadido esta línea? Cuando la tengas, cerramos la función y ya tienes tu CREATE completo.RetryClaude does not have the ability to run the code it generates yet.Jsi ya estaEditPerfecto, ahora tienes:
+javascriptconst createFilm = async (newFilm) => {
+  const response = await fetch(URL_API_FILMS, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newFilm)
+  });
+  const createdFilm = await response.json();
+  return createdFilm;
+Paso 30: Cerrar la función CREATE
+El siguiente paso es añadir esta línea:
+javascript}
+¿Qué hace esta línea?
+
+} = Cierra la función createFilm que abrimos al principio
+
+¡Felicidades! Ya tienes tu función CREATE completa.
+¿Qué puedes hacer ahora?
+Tu función está lista para usar. Puedes llamarla así:
+javascriptcreateFilm({
+  title: "Moana",
+  director: "Ron Clements",
+  description: "Una aventura oceánica..."
+});
+En palabras simples: "Cierra la función CREATE - ya está lista para usar"
+¿Has añadido esta línea? ¿Quieres que te explique cómo probar la función CREATE, o prefieres continuar con UPDATE o DELETE?RetryClaude does not have the ability to run the code it generates yet.Jmuchas gracias por tu ayuda!!Edit¡De nada! Ha sido un placer ayudarte paso a paso.
+Has hecho un trabajo excelente creando tu aplicación de películas Disney. Ya tienes:
+✅ READ - Para obtener todas las películas
+✅ PRINT - Para mostrarlas en pantalla
+✅ CREATE - Para añadir nuevas películas
+Si en el futuro quieres continuar con UPDATE (editar películas) o DELETE (eliminar películas), ya sabes dónde encontrarme.
+¡Que disfrutes programando tu base de datos de películas Disney! 🎬✨RetryJexplicame como probar la funcion createEdit¡Perfecto! Te explico cómo probar tu función CREATE paso a paso.
+Método 1: Probar desde la consola del navegador
+Paso 1: Abrir la consola
+
+Abre tu página web
+Presiona F12 → pestaña Console
+
+Paso 2: Llamar a la función
+Escribe esto en la consola:
+javascriptcreateFilm({
+  title: "Moana",
+  director: "Ron Clements", 
+  description: "Una aventura oceánica con una joven valiente"
+});
+Paso 3: Verificar el resultado
+
+Deberías ver la película nueva en la consola
+Recarga la página para ver si aparece en tu lista
+
+Método 2: Crear un botón en tu HTML
+Paso 1: Añadir un botón en tu HTML
+html<button onclick="testCreateFilm()">Crear Película de Prueba</button>
+Paso 2: Crear una función de prueba en tu JavaScript
+javascriptconst testCreateFilm = async () => {
+  const newFilm = await createFilm({
+    title: "Encanto",
+    director: "Jared Bush",
+    description: "Una familia mágica en Colombia"
+  });
+  console.log("Película creada:", newFilm);
+}
+¿Cuál método prefieres probar primero?RetryClaude does not have the ability to run the code it generates yet.Jtodo ok!!Edit¡Genial! Me alegra saber que todo funciona correctamente.
+Has conseguido crear una aplicación completa con:
+
+✅ Lectura de películas desde tu API
+✅ Mostrar las películas en pantalla
+✅ Crear nuevas películas
+✅ Probar que todo funciona
+
+¡Excelente trabajo! 🎉
+Si en el futuro necesitas ayuda con UPDATE, DELETE, o cualquier otra funcionalidad, no dudes en preguntar. ¡Que sigas disfrutando programando tu base de datos de películas Disney! 🎬✨RetryJy ahora quiero continuar con el formulario en html que nos has sugerido antes para que el usuario pueda meter los datos a traves de la interfazEdit¡Perfecto! Vamos a crear un formulario HTML para que el usuario pueda añadir películas desde la interfaz.
+Paso 31: Crear el formulario básico
+El primer paso es añadir este código HTML en tu archivo HTML:
+html<form id="film-form">
+  <h2>Añadir Nueva Película Disney</h2>
+</form>
+¿Qué hace este código?
+
+<form id="film-form"> = Crea un formulario con un ID único para identificarlo
+<h2> = Añade un título al formulario
+El ID nos servirá para conectar el formulario con JavaScript
+
+¿Dónde ponerlo?
+En tu archivo HTML, encima o debajo de donde tienes el <div id="film-section">.
+En palabras simples: "Crea un formulario básico con título"
+¿Has añadido este código en tu HTML? Cuando lo tengas, añadiremos los campos para introducir los datos.RetryClaude does not have the ability to run the code it generates yet.Jya estaEditPerfecto, ahora tienes:
+html<form id="film-form">
+  <h2>Añadir Nueva Película Disney</h2>
+</form>
+Paso 32: Añadir el campo para el título
+El siguiente paso es añadir este código DENTRO del formulario:
+html<label for="title">Título:</label>
+<input type="text" id="title" name="title" required>
+¿Qué hace este código?
+
+<label for="title"> = Crea una etiqueta que dice "Título:"
+<input type="text" id="title" = Crea un campo de texto para escribir el título
+name="title" = Le da un nombre al campo para identificarlo
+required = Hace que el campo sea obligatorio
+
+¿Por qué label e input separados?
+
+El label es lo que ve el usuario
+El input es donde el usuario escribe
+Están conectados por el for="title" y id="title"
+
+En palabras simples: "Crea un campo donde el usuario puede escribir el título de la película"
+¿Has añadido este código dentro del formulario? Cuando lo tengas, añadiremos el campo para el director.RetryClaude does not have the ability to run the code it generates yet.JsiEditPerfecto, ahora tienes:
+html<form id="film-form">
+  <h2>Añadir Nueva Película Disney</h2>
+  <label for="title">Título:</label>
+  <input type="text" id="title" name="title" required>
+</form>
+Paso 33: Añadir el campo para el director
+El siguiente paso es añadir este código después del campo título:
+html<label for="director">Director:</label>
+<input type="text" id="director" name="director" required>
+¿Qué hace este código?
+
+<label for="director"> = Crea una etiqueta que dice "Director:"
+<input type="text" id="director" = Crea un campo de texto para escribir el director
+name="director" = Le da el nombre "director" al campo
+required = También hace obligatorio este campo
+
+¿Por qué la misma estructura?
+Cada campo del formulario sigue el mismo patrón: label + input con sus respectivos IDs y nombres.
+En palabras simples: "Crea un campo donde el usuario puede escribir el director de la película"
+¿Has añadido este código? Cuando lo tengas, añadiremos el campo para la descripción.RetryClaude does not have the ability to run the code it generates yet.Jsi esta listoEditPerfecto, ahora tienes:
+html<form id="film-form">
+  <h2>Añadir Nueva Película Disney</h2>
+  <label for="title">Título:</label>
+  <input type="text" id="title" name="title" required>
+  <label for="director">Director:</label>
+  <input type="text" id="director" name="director" required>
+</form>
+Paso 34: Añadir el campo para la descripción
+El siguiente paso es añadir este código después del campo director:
+html<label for="description">Descripción:</label>
+<textarea id="description" name="description" required></textarea>
+¿Qué hace este código?
+
+<label for="description"> = Crea una etiqueta que dice "Descripción:"
+<textarea> = Crea un campo de texto GRANDE (para textos largos)
+id="description" = Le da el ID "description"
+name="description" = Le da el nombre "description"
+
+¿Por qué textarea en lugar de input?
+
+input es para textos cortos (título, director)
+textarea es para textos largos (descripción de la película)
+El usuario puede escribir varias líneas
+
+En palabras simples: "Crea un campo grande donde el usuario puede escribir la descripción de la película"
+¿Has añadido este código? Cuando lo tengas, añadiremos el botón para enviar el formulario.RetryClaude does not have the ability to run the code it generates yet.Jsi ya estaEditPerfecto, ahora tienes:
+html<form id="film-form">
+  <h2>Añadir Nueva Película Disney</h2>
+  <label for="title">Título:</label>
+  <input type="text" id="title" name="title" required>
+  <label for="director">Director:</label>
+  <input type="text" id="director" name="director" required>
+  <label for="description">Descripción:</label>
+  <textarea id="description" name="description" required></textarea>
+</form>
+Paso 35: Añadir el botón de envío
+El siguiente paso es añadir este código después del campo descripción:
+html<button type="submit">Crear Película</button>
+¿Qué hace este código?
+
+<button type="submit"> = Crea un botón que envía el formulario
+type="submit" = Le dice al navegador que este botón envía los datos del formulario
+Crear Película = Es el texto que aparece en el botón
+
+¿Por qué type="submit"?
+
+Cuando el usuario hace clic, se ejecuta el evento "submit" del formulario
+Esto nos permite capturar los datos y procesarlos con JavaScript
+
+En palabras simples: "Crea un botón que cuando lo presionen, envíe los datos del formulario"
+¿Has añadido este código? Cuando lo tengas, ya tienes tu formulario HTML completo y pasaremos a conectarlo con JavaScript.RetryClaude does not have the ability to run the code it generates yet.Jsi ya estaEdit¡Perfecto! Ya tienes tu formulario HTML completo:
+html<form id="film-form">
+  <h2>Añadir Nueva Película Disney</h2>
+  <label for="title">Título:</label>
+  <input type="text" id="title" name="title" required>
+  <label for="director">Director:</label>
+  <input type="text" id="director" name="director" required>
+  <label for="description">Descripción:</label>
+  <textarea id="description" name="description" required></textarea>
+  <button type="submit">Crear Película</button>
+</form>
+Paso 36: Conectar el formulario con JavaScript
+Ahora necesitamos ir a tu archivo JavaScript y conectar el formulario. El siguiente paso es añadir este código después de tu función createFilm:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+¿Qué hace esta línea?
+
+document.getElementById("film-form") = Busca el formulario en el HTML por su ID
+const filmForm = Guarda una referencia al formulario para poder usarlo
+
+En palabras simples: "Conecta el formulario HTML con JavaScript"
+¿Has añadido esta línea en tu JavaScript? Cuando la tengas, te explico cómo capturar cuando el usuario envía el formulario.RetryClaude does not have the ability to run the code it generates yet.Jsi estaEditPerfecto, ahora tienes:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+Paso 37: Escuchar cuando se envía el formulario
+El siguiente paso es añadir este código después de la línea anterior:
+javascriptfilmForm.addEventListener("submit", async (event) => {
+¿Qué hace esta línea?
+
+filmForm.addEventListener = "Escucha" cuando algo pasa con el formulario
+"submit" = Específicamente escucha cuando se envía el formulario (cuando hacen clic en el botón)
+async (event) => = Cuando se envíe, ejecuta esta función asíncrona
+event = La información sobre lo que pasó (el envío del formulario)
+
+¿Cuándo se ejecuta?
+Cuando el usuario llena el formulario y hace clic en "Crear Película".
+En palabras simples: "Escucha cuando el usuario envía el formulario y ejecuta código"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo evitar que la página se recargue.RetryClaude does not have the ability to run the code it generates yet.Jsi estaEditPerfecto, ahora tienes:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+filmForm.addEventListener("submit", async (event) => {
+Paso 38: Evitar que la página se recargue
+El siguiente paso es añadir esta línea dentro de la función:
+javascriptevent.preventDefault();
+¿Qué hace esta línea?
+
+event.preventDefault() = Evita que el formulario haga su comportamiento normal
+El comportamiento normal es recargar la página cuando se envía
+
+¿Por qué necesitamos esto?
+
+Si no lo ponemos, cuando el usuario envíe el formulario, la página se recargará
+Nosotros queremos manejar el envío con JavaScript, no recargar la página
+Queremos que sea más suave y moderno
+
+En palabras simples: "Evita que la página se recargue cuando se envíe el formulario"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo obtener los datos que escribió el usuario.RetryClaude does not have the ability to run the code it generates yet.Jsi estaEditPerfecto, ahora tienes:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+filmForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+Paso 39: Obtener los datos del formulario
+El siguiente paso es añadir estas líneas:
+javascriptconst title = document.getElementById("title").value;
+const director = document.getElementById("director").value;
+const description = document.getElementById("description").value;
+¿Qué hacen estas líneas?
+
+document.getElementById("title").value = Obtiene el texto que escribió el usuario en el campo título
+document.getElementById("director").value = Obtiene el texto del campo director
+document.getElementById("description").value = Obtiene el texto del campo descripción
+.value = Es la propiedad que contiene lo que escribió el usuario
+
+En palabras simples: "Toma los datos que escribió el usuario en cada campo del formulario"
+¿Has añadido estas líneas? Cuando las tengas, te explico cómo crear el objeto con los datos.RetryClaude does not have the ability to run the code it generates yet.Jsi estanEditPerfecto, ahora tienes:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+filmForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const title = document.getElementById("title").value;
+  const director = document.getElementById("director").value;
+  const description = document.getElementById("description").value;
+Paso 40: Crear el objeto con los datos
+El siguiente paso es añadir estas líneas:
+javascriptconst newFilm = {
+  title: title,
+  director: director,
+  description: description
+};
+¿Qué hace este código?
+
+const newFilm = { = Crea un objeto llamado "newFilm"
+title: title, = Pone el título que escribió el usuario
+director: director, = Pone el director que escribió el usuario
+description: description = Pone la descripción que escribió el usuario
+
+¿Por qué crear un objeto?
+Tu función createFilm espera recibir un objeto con esta estructura exacta.
+En palabras simples: "Organiza los datos del usuario en un objeto que la función createFilm puede usar"
+¿Has añadido estas líneas? Cuando las tengas, te explico cómo llamar a la función createFilm.RetryClaude does not have the ability to run the code it generates yet.Jsi estanEditPerfecto, ahora tienes:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+filmForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const title = document.getElementById("title").value;
+  const director = document.getElementById("director").value;
+  const description = document.getElementById("description").value;
+  const newFilm = {
+    title: title,
+    director: director,
+    description: description
+  };
+Paso 41: Llamar a la función createFilm
+El siguiente paso es añadir esta línea:
+javascriptconst createdFilm = await createFilm(newFilm);
+¿Qué hace esta línea?
+
+createFilm(newFilm) = Llama a la función que creamos antes y le pasa los datos del usuario
+await = Espera a que se complete la creación de la película
+const createdFilm = Guarda la película creada (con el ID que le asignó el servidor)
+
+¿Qué pasa aquí?
+
+Los datos del formulario se envían a tu base de datos
+El servidor crea la película y le asigna un ID
+Recibes la confirmación de que se creó correctamente
+
+En palabras simples: "Envía los datos del formulario a la base de datos para crear la película"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo limpiar el formulario después de crear la película.RetryClaude does not have the ability to run the code it generates yet.Jsi estaEditPerfecto, ahora tienes:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+filmForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const title = document.getElementById("title").value;
+  const director = document.getElementById("director").value;
+  const description = document.getElementById("description").value;
+  const newFilm = {
+    title: title,
+    director: director,
+    description: description
+  };
+  const createdFilm = await createFilm(newFilm);
+Paso 42: Limpiar el formulario
+El siguiente paso es añadir esta línea:
+javascriptfilmForm.reset();
+¿Qué hace esta línea?
+
+filmForm.reset() = Borra todos los campos del formulario
+Los campos vuelven a estar vacíos, listos para introducir otra película
+
+¿Por qué limpiar el formulario?
+
+Después de crear una película, el usuario ve que los campos se vacían
+Esto le confirma que la película se creó correctamente
+Puede introducir otra película inmediatamente
+
+En palabras simples: "Vacía todos los campos del formulario después de crear la película"
+¿Has añadido esta línea? Cuando la tengas, te explico cómo cerrar la función y ya tendrás todo funcionando.RetryClaude does not have the ability to run the code it generates yet.Jsi la tengoEditPerfecto, ahora tienes:
+javascript// ========================================
+//  FORM HANDLER
+// ========================================
+const filmForm = document.getElementById("film-form");
+filmForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const title = document.getElementById("title").value;
+  const director = document.getElementById("director").value;
+  const description = document.getElementById("description").value;
+  const newFilm = {
+    title: title,
+    director: director,
+    description: description
+  };
+  const createdFilm = await createFilm(newFilm);
+  filmForm.reset();
+Paso 43: Cerrar la función
+El siguiente paso es añadir esta línea:
+javascript});
+¿Qué hace esta línea?
+
+} = Cierra la función que se ejecuta cuando se envía el formulario
+) = Cierra el paréntesis del addEventListener
+; = Termina la instrucción
+
+¡Felicidades! 🎉 Ya tienes tu formulario completamente funcional.
+¿Qué puedes hacer ahora?
+
+Llenar el formulario con datos de una película
+Hacer clic en "Crear Película"
+Ver que se vacían los campos
+Recargar la página para ver tu nueva película en la lista
+
+En palabras simples: "Cierra la función del formulario - ya está todo listo para usar"
+¿Has añadido esta línea? ¡Prueba tu formulario!RetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses.ya esta Sonnet 4
+
+    
+</body>
+</html>

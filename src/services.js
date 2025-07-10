@@ -62,8 +62,8 @@ const createFilm = async (newFilm) => {
         //abre una sección para configurar como enviar los datos
         //headers: son como etiquetas que le dicen al servidor que tipo de datos le enviamos
         headers: {
-         //Content-Type le dice al servidor que formto tienen los datos
-         //application/json" = Especifica que los datos están en formato JSON
+            //Content-Type le dice al servidor que formto tienen los datos
+            //application/json" = Especifica que los datos están en formato JSON
             "Content-Type": "application/json"
         },
         //envia los datos de la pelicula nueva convertidos a formato JSON
@@ -86,12 +86,12 @@ const createFilm = async (newFilm) => {
 const filmForm = document.getElementById("film-form");
 //"Escucha cuando el usuario envía el formulario y ejecuta código"
 filmForm.addEventListener("submit", async (event) => {
-//Evita que la página se recargue cuando se envíe el formulario"
+    //Evita que la página se recargue cuando se envíe el formulario"
     event.preventDefault();
-//document.getElementById("title").value = Obtiene el texto que escribió el usuario en el campo título
-//document.getElementById("director").value = Obtiene el texto del campo director
-//document.getElementById("description").value = Obtiene el texto del campo descripción
-//.value = Es la propiedad que contiene lo que escribió el usuario
+    //document.getElementById("title").value = Obtiene el texto que escribió el usuario en el campo título
+    //document.getElementById("director").value = Obtiene el texto del campo director
+    //document.getElementById("description").value = Obtiene el texto del campo descripción
+    //.value = Es la propiedad que contiene lo que escribió el usuario
 
     const title = document.getElementById("title").value;
     const director = document.getElementById("director").value;
@@ -101,7 +101,7 @@ filmForm.addEventListener("submit", async (event) => {
     //director: director, = Pone el director que escribió el usuario
     //description: description = Pone la descripción que escribió el usuario
     //En palabras simples: "Organiza los datos del usuario en un objeto que la función createFilm puede usar"
-    const newFilm = { 
+    const newFilm = {
         title: title,
         director: director,
         description: description
@@ -110,7 +110,7 @@ filmForm.addEventListener("submit", async (event) => {
     //await = Espera a que se complete la creación de la película
     //const createdFilm = Guarda la película creada (con el ID que le asignó el servidor)
     //que pasa: los datos se envian a mi base de datos, el servidor crea la pelicula, recibo la confirmación de que se creo correctamente
-const createdFilm = await createFilm(newFilm);
-//borra todos los campos del formulario
-filmForm.releasePointerCapture();
+    const createdFilm = await createFilm(newFilm);
+    //borra todos los campos del formulario
+    filmForm.releasePointerCapture();
 });
