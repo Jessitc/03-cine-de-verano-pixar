@@ -8,6 +8,47 @@
 </head>
 <body>
     <section id ="film-section"></section>
-    
+    <!--<form id="film-form"> = Crea un formulario con un ID único para identificarlo-->
+    <form id="film-form">
+<!--titulo del formulario-->
+        <h2>Añadir nueva pelicula Pixar</h2>
+        <!--<label for="title"> = Crea una etiqueta que dice "Título:"-->
+        <label for="title">Titulo:</label>
+        <!--<input type="text" id="title" = Crea un campo de texto para escribir el título
+name="title" = Le da un nombre al campo para identificarlo
+required = Hace que el campo sea obligatorio-->
+        <input type="text" id="title" name="title" required>
+<!--<label for="director"> = Crea una etiqueta que dice "Director:"
+<input type="text" id="director" = Crea un campo de texto para escribir el director
+name="director" = Le da el nombre "director" al campo
+required = También hace obligatorio este campo
+
+¿Por qué la misma estructura?
+Cada campo del formulario sigue el mismo patrón: label + input con sus respectivos IDs y nombres.
+En palabras simples: "Crea un campo donde el usuario puede escribir el director de la película"
+¿Has añadido este código? Cuando lo tengas, añadiremos el campo para la descripción.RetryClaude does not have the ability to run the code it generates yet.Claude can make mistakes. Please double-check responses. Sonnet 4Chat controls Sonnet 4-->
+        <label for="director">Director:</label>
+        <input type="text" id="director"  name="director"  required>
+<!--<label for="description"> = Crea una etiqueta que dice "Descripción:"
+<textarea> = Crea un campo de texto GRANDE (para textos largos)
+id="description" = Le da el ID "description"
+name="description" = Le da el nombre "description"
+-->
+<!--¿Por qué textarea en lugar de input?
+
+input es para textos cortos (título, director)
+textarea es para textos largos (descripción de la película)
+El usuario puede escribir varias líneas-->
+
+        <label for="descripción">Descripción</label>
+        <textarea id="description" name="description" required></textarea>
+        <!--¿Qué hace este código?
+
+<button type="submit"> = Crea un botón que envía el formulario
+type="submit" = Le dice al navegador que este botón envía los datos del formulario
+Crear Película = Es el texto que aparece en el botón-->
+
+        <button type="submit">Crear pelicula</button>
+    </form>
 </body>
 </html>
