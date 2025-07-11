@@ -1,6 +1,30 @@
 {
   "films": [
     {
+      "id": "1",
+      "title": "Toy Story",
+      "director": "John Lasseter",
+      "film_description": "La historia de un grupo de juguetes que cobran vida cuando los humanos no están presentes. Woody, un vaquero de juguete, debe lidiar con la llegada de Buzz Lightyear, un nuevo juguete espacial que amenaza su posición como el favorito de su dueño Andy."
+    },
+    {
+      "id": "2",
+      "title": "Finding Nemo",
+      "director": "Andrew Stanton",
+      "film_description": "Un pez payaso sobreprotector llamado Marlin se embarca en una épica aventura a través del océano para rescatar a su hijo Nemo, quien fue capturado por buzos. En el camino, conoce a Dory, un pez con problemas de memoria a corto plazo."
+    },
+    {
+      "id": "3",
+      "title": "The Incredibles",
+      "director": "Brad Bird",
+      "film_description": "Una familia de superhéroes debe ocultar sus poderes y vivir una vida normal suburbana. Cuando Mr. Incredible es llamado secretamente a una misión, toda la familia debe unirse para salvar el mundo de un villano vengativo."
+    },
+    {
+      "id": "4",
+      "title": "Inside Out",
+      "director": "Pete Docter",
+      "film_description": "La historia se desarrolla dentro de la mente de Riley, una niña de 11 años, donde cinco emociones (Alegría, Tristeza, Miedo, Ira y Desagrado) trabajan juntas para ayudarla a navegar por la vida, especialmente durante una mudanza difícil."
+    },
+    {
       "id": "5",
       "title": "Coco",
       "director": "Lee Unkrich",
