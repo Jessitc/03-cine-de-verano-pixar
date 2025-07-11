@@ -112,5 +112,46 @@ filmForm.addEventListener("submit", async (event) => {
     //que pasa: los datos se envian a mi base de datos, el servidor crea la pelicula, recibo la confirmación de que se creo correctamente
     const createdFilm = await createFilm(newFilm);
     //borra todos los campos del formulario
-    filmForm.releasePointerCapture();
+    filmForm.reset();
+    filmContainer.innerHTML="",
+    await printFilms();
 });
+
+
+// ========================================
+//  DELETE
+// ========================================
+//async: esta función va a usar operaciones asíncronas (que toman tiempo)
+//function deleteFilm: es el nombre de la función
+//(id):Recibe un parámetro: el ID de la película que queremos eliminar
+/*async function deleteFilm(id) {
+    //comenzamos un bloque para intentar ejecutar un codigo que puede fallar
+    //Si algo sale mal (error de red, servidor caído, etc.), el código saltará al bloque catch
+    try {
+        //const response: creamos una variable para guardar la respuesta del servidor
+        //await: esperamos a que termine la petición antes de continuar
+        //fetch: funcion para hacer peticiones HTTP
+        //http://localhost:3000/movies/${id}: URL a la que hacemos la petición
+        //${id}: Insertamos el ID de la película en la URL
+        const response = await fetch (`http://localhost:3000/movies/${id}`, {
+        //le decimos al servidor que queremos eliminar
+         method: 'DELETE',
+         //headers: información adicional que enviamos al servidor
+         //Content-Type: le decimos al servidor que tipo de datos estamos enviando(aunque no se envien datos en delete es buena practica incluirlo)
+
+         headers: {
+                'Content-Type': 'application/json'
+         }
+     });
+     //if (!response.ok):para verificar si la respuesta del servidor fue exitosa (si se eliminó la pelicula)
+     //(aparece error en consola de navegador)
+     if (!response.ok) {
+
+        }
+//todo try debe tener un catch
+    } cath (error) {
+        console.error('Error al eliminar la película:', error);
+    }
+}*/
+
+
