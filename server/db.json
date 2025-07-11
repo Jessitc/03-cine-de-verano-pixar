@@ -1,34 +1,10 @@
 {
   "films": [
     {
-      "id": "1",
-      "title": "Toy Story",
-      "director": "John Lasseter",
-      "description": "La historia de un grupo de juguetes que cobran vida cuando los humanos no están presentes. Woody, un vaquero de juguete, debe lidiar con la llegada de Buzz Lightyear, un nuevo juguete espacial que amenaza su posición como el favorito de su dueño Andy."
-    },
-    {
       "id": "5",
       "title": "Coco",
       "director": "Lee Unkrich",
-      "description": "Miguel, un niño de 12 años que sueña con ser músico, se transporta accidentalmente a la Tierra de los Muertos durante el Día de los Muertos. Debe encontrar a su bisabuelo músico para regresar al mundo de los vivos antes del amanecer."
-    },
-    {
-      "id": "445a",
-      "title": "Moana",
-      "director": "Ron Clements",
-      "description": "Una aventura oceánica con una joven valiente"
-    },
-    {
-      "id": "4340",
-      "title": "Moana",
-      "director": "Ron Clements",
-      "description": "Una aventura oceánica con una joven valiente"
-    },
-    {
-      "id": "e218",
-      "title": "coco",
-      "director": "pixar",
-      "description": "mmmmm"
+      "film_description": "Miguel, un niño de 12 años que sueña con ser músico, se transporta accidentalmente a la Tierra de los Muertos durante el Día de los Muertos. Debe encontrar a su bisabuelo músico para regresar al mundo de los vivos antes del amanecer."
     }
   ]
 }

@@ -26,6 +26,7 @@ let filmContainer = document.getElementById("film-section");
 //creamos una función para mostrar las peliculas en pantalla
 const printFilms = async () => {
     //llamamos a la funcion getAllFilms para que nos traiga la información
+    filmContainer.innerHTML = "";
     const listFilms = await getAllFilms();
     //console.log("lista de peliculas",listFilms);
     //recorres cada pelicula de la lista y ejecuta el codigo que ponga a continuación
@@ -39,7 +40,10 @@ const printFilms = async () => {
         <h2>Director de la pelicula: ${film.director}</h2>
         <p><b>Descripción de la pelicla</b>: ${film.description}</p>
         <p><b>numero de la pelicula</b>: ${film.id}</p>
-        </div>`
+         <button onClick="deleteFilm('${film.id}')">Eliminar</button>
+        </div>`;
+
+
 
     });
 }
@@ -121,15 +125,18 @@ filmForm.addEventListener("submit", async (event) => {
 // ========================================
 //  DELETE
 // ========================================
-
 const deleteFilm = async (id) => {
+    //2. Petición al servidor y guarda la respuesta en "response"
     const response = await fetch(`${URL_API_FILMS}/${id}`, {
+        //3. Manda la orden de eliminar
         method: "DELETE",
+        //Info de cómo enviamos los datos
         headers: {
+            //Especifica que trabajamos con JSON
             'Content-Type': 'application/json'
         }
     });
-
+    //4. Verificar si la eliminación fue exitosa
     if (response.ok) {
         console.log(`Película con ID ${id} eliminada`);
         printFilms();
